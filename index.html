@@ -1,1 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NOIR Botanics — Black Friday Private Access</title>
+<meta name="description" content="Black Friday, observed quietly. Thirty percent off the Signature Holiday Grooming Set. Botanical skincare and grooming, made in small batches." />
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --obsidian:      #0B0B0C;
+  --obsidian-soft: #101012;
+  --obsidian-card: #131315;
+  --alabaster:     #F4EFEA;
+  --gold:          #C6A87C;
+  --gold-light:    #DCC4A0;
+  --gold-deep:     #9C7F56;
+  --muted:         rgba(244, 239, 234, 0.58);
+  --muted-soft:    rgba(244, 239, 234, 0.38);
+  --line:          rgba(244, 239, 234, 0.10);
+  --line-gold:     rgba(198, 168, 124, 0.28);
+
+  --serif: "Cormorant Garamond", "Times New Roman", serif;
+  --sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --gutter: clamp(20px, 5vw, 48px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body{
+  margin: 0;
+  background: var(--obsidian);
+  color: var(--alabaster);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ambient light + film grain */
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(900px 520px at 78% -8%, rgba(198,168,124,0.10), transparent 62%),
+    radial-gradient(760px 480px at 8% 22%, rgba(198,168,124,0.045), transparent 60%),
+    radial-gradient(1200px 800px at 50% 108%, rgba(198,168,124,0.06), transparent 65%);
+}
+body::after{
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img, svg { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+::selection{ background: rgba(198,168,124,0.28); color: var(--alabaster); }
+
+/* ============================================================
+   LAYOUT PRIMITIVES
+   ============================================================ */
+.container{
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow{
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.eyebrow::before{
+  content: "";
+  width: 34px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+h1, h2, h3, h4{
+  font-family: var(--serif);
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+
+.serif-italic{ font-style: italic; color: var(--gold-light); }
+
+/* ============================================================
+   ANNOUNCEMENT BAR
+   ============================================================ */
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.announce{
+  background: linear-gradient(90deg, rgba(198,168,124,0.10), rgba(198,168,124,0.16) 50%, rgba(198,168,124,0.10));
+  border-bottom: 1px solid var(--line-gold);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.announce-inner{
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: 9px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.announce-label{
+  color: var(--gold-light);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+}
+.pulse-dot{
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 0 rgba(198,168,124,0.7);
+  animation: pulse 2.6s var(--ease) infinite;
+}
+@keyframes pulse{
+  0%   { box-shadow: 0 0 0 0 rgba(198,168,124,0.55); }
+  70%  { box-shadow: 0 0 0 7px rgba(198,168,124,0); }
+  100% { box-shadow: 0 0 0 0 rgba(198,168,124,0); }
+}
+
+.countdown{
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--alabaster);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+.cd-label{
+  color: var(--muted-soft);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  margin-right: 2px;
+}
+.cd-unit{
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1px;
+}
+.cd-num{
+  display: inline-block;
+  min-width: 2.05ch;
+  text-align: center;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(11,11,12,0.42);
+  border: 1px solid rgba(198,168,124,0.22);
+  color: var(--gold-light);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.cd-colon{ color: rgba(198,168,124,0.5); }
+
+.copy-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  background: rgba(11,11,12,0.45);
+  border: 1px solid rgba(198,168,124,0.38);
+  border-radius: 999px;
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: background .35s var(--ease), border-color .35s var(--ease),
+              color .35s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease);
+  white-space: nowrap;
+}
+.copy-btn:hover{
+  background: rgba(198,168,124,0.16);
+  border-color: rgba(198,168,124,0.65);
+  color: var(--alabaster);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+.copy-btn:active{ transform: translateY(0) scale(0.985); }
+.copy-btn .tick{ display: none; }
+.copy-btn.copied{
+  border-color: rgba(198,168,124,0.9);
+  background: rgba(198,168,124,0.22);
+  color: var(--alabaster);
+}
+.copy-btn.copied .tick{ display: inline; }
+.copy-btn.copied .glyph{ display: none; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  background: rgba(11,11,12,0.72);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner{
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: 16px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.brand{
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  font-family: var(--serif);
+  font-size: 20px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--alabaster);
+  transition: opacity .35s var(--ease);
+}
+.brand:hover{ opacity: 0.82; }
+.brand .mark{
+  width: 5px; height: 5px;
+  background: var(--gold);
+  border-radius: 50%;
+  transform: translateY(-3px);
+}
+.nav-links{
+  display: flex;
+  gap: 34px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--muted);
+}
+.nav-links a{
+  position: relative;
+  padding-bottom: 3px;
+  transition: color .35s var(--ease);
+}
+.nav-links a::after{
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 1px;
+  width: 0;
+  background: var(--gold);
+  transition: width .45s var(--ease);
+}
+.nav-links a:hover{ color: var(--alabaster); }
+.nav-links a:hover::after{ width: 100%; }
+.nav-utility{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--muted);
+}
+.nav-utility .cart{
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: color .35s var(--ease);
+}
+.nav-utility .cart:hover{ color: var(--gold-light); }
+.cart-count{
+  display: inline-grid;
+  place-items: center;
+  width: 17px; height: 17px;
+  border-radius: 50%;
+  border: 1px solid var(--line-gold);
+  color: var(--gold);
+  font-size: 9px;
+  letter-spacing: 0;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  padding: clamp(56px, 8vw, 104px) 0 clamp(64px, 9vw, 120px);
+  position: relative;
+}
+.hero-grid{
+  display: grid;
+  grid-template-columns: 1.02fr 0.98fr;
+  gap: clamp(40px, 6vw, 84px);
+  align-items: center;
+}
+
+.hero-title{
+  font-size: clamp(3.1rem, 6.4vw, 5.6rem);
+  line-height: 0.94;
+  margin: 26px 0 0;
+  letter-spacing: -0.028em;
+}
+.hero-title .line{ display: block; }
+.hero-title em{
+  font-style: italic;
+  color: var(--gold-light);
+  font-weight: 300;
+}
+
+.hero-sub{
+  margin: 28px 0 0;
+  max-width: 46ch;
+  font-size: 15.5px;
+  line-height: 1.78;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.hero-actions{
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 38px;
+}
+
+/* gold button */
+.btn{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  padding: 17px 34px;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform .45s var(--ease), box-shadow .45s var(--ease), filter .45s var(--ease);
+  white-space: nowrap;
+}
+.btn-gold{
+  background: linear-gradient(178deg, #E0C9A4 0%, var(--gold) 42%, #A8875E 100%);
+  color: #16130E;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.30) inset, 0 10px 26px rgba(0,0,0,0.45);
+}
+.btn-gold::after{
+  content: "";
+  position: absolute;
+  top: 0; left: -70%;
+  width: 45%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.55), transparent);
+  transform: skewX(-18deg);
+  transition: left .75s var(--ease);
+}
+.btn-gold:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.35) inset, 0 16px 38px rgba(198,168,124,0.26);
+}
+.btn-gold:hover::after{ left: 130%; }
+.btn-gold:active{ transform: translateY(0); }
+
+.btn-ghost{
+  background: transparent;
+  color: var(--alabaster);
+  border: 1px solid rgba(244,239,234,0.22);
+  transition: border-color .4s var(--ease), color .4s var(--ease),
+              background .4s var(--ease), transform .4s var(--ease);
+}
+.btn-ghost:hover{
+  border-color: var(--gold);
+  color: var(--gold-light);
+  background: rgba(198,168,124,0.07);
+  transform: translateY(-2px);
+}
+
+.hero-trust{
+  margin-top: 34px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  font-size: 10.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted-soft);
+  font-weight: 500;
+}
+.hero-trust span{ display: inline-flex; align-items: center; gap: 8px; }
+.hero-trust span::before{
+  content: "";
+  width: 3px; height: 3px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+/* ============================================================
+   HERO PRODUCT CARD
+   ============================================================ */
+.product-card{
+  position: relative;
+  background:
+    radial-gradient(120% 90% at 50% -10%, rgba(198,168,124,0.16), transparent 58%),
+    linear-gradient(168deg, #17171A 0%, #121214 46%, #0E0E10 100%);
+  border: 1px solid var(--line-gold);
+  border-radius: 4px;
+  padding: clamp(26px, 3.4vw, 40px);
+  box-shadow: 0 40px 90px -30px rgba(0,0,0,0.95), 0 0 0 1px rgba(0,0,0,0.4);
+  transition: transform .6s var(--ease), box-shadow .6s var(--ease), border-color .6s var(--ease);
+  overflow: hidden;
+}
+.product-card::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(198,168,124,0.07) 48%, transparent 62%);
+  opacity: 0;
+  transition: opacity .7s var(--ease);
+  pointer-events: none;
+}
+.product-card:hover{
+  transform: translateY(-6px);
+  border-color: rgba(198,168,124,0.52);
+  box-shadow: 0 52px 110px -34px rgba(0,0,0,1), 0 0 60px -20px rgba(198,168,124,0.22);
+}
+.product-card:hover::before{ opacity: 1; }
+
+.card-head{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.card-kicker{
+  font-size: 9.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+.card-stock{
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-soft);
+  font-weight: 500;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+.card-title{
+  font-size: clamp(1.55rem, 2.5vw, 2rem);
+  line-height: 1.14;
+  margin-top: 14px;
+  letter-spacing: -0.01em;
+}
+
+/* bottle stage */
+.set-stage{
+  position: relative;
+  margin: 30px 0 26px;
+  height: clamp(190px, 24vw, 236px);
+  display: grid;
+  place-items: center;
+  border-radius: 3px;
+  background:
+    radial-gradient(70% 60% at 50% 74%, rgba(198,168,124,0.16), transparent 70%),
+    linear-gradient(180deg, rgba(255,255,255,0.012), rgba(0,0,0,0.18));
+  border: 1px solid rgba(244,239,234,0.055);
+  overflow: hidden;
+}
+.set-stage::after{
+  content: "";
+  position: absolute;
+  left: 50%; bottom: 26px;
+  width: 74%; height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(198,168,124,0.55), transparent);
+}
+
+/* Added styles for images */
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tier-img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  border-radius: 2px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(198,168,124,0.15);
+  transition: transform .5s var(--ease);
+}
+.tier:hover .tier-img {
+  transform: scale(1.02);
+}
+
+/* ingredient badges */
+.badges{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold-light);
+  border: 1px solid rgba(198,168,124,0.26);
+  background: rgba(198,168,124,0.055);
+  border-radius: 999px;
+  padding: 6px 13px;
+  transition: background .4s var(--ease), border-color .4s var(--ease), color .4s var(--ease);
+  cursor: default;
+}
+.badge::before{
+  content: "";
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.badge:hover{
+  background: rgba(198,168,124,0.16);
+  border-color: rgba(198,168,124,0.6);
+  color: var(--alabaster);
+}
+
+.price-row{
+  display: flex;
+  align-items: baseline;
+  gap: 13px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.price-now{
+  font-family: var(--serif);
+  font-size: 2.05rem;
+  line-height: 1;
+  color: var(--alabaster);
+  letter-spacing: -0.01em;
+}
+.price-was{
+  font-size: 14px;
+  color: var(--muted-soft);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  font-weight: 400;
+}
+.price-note{
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-left: auto;
+}
+
+.btn-block{ width: 100%; }
+
+/* ============================================================
+   TIERS
+   ============================================================ */
+.section{
+  padding: clamp(68px, 9vw, 128px) 0;
+  position: relative;
+  z-index: 2;
+}
+.section-head{
+  max-width: 660px;
+  margin-bottom: clamp(40px, 5vw, 68px);
+}
+.section-title{
+  font-size: clamp(2.3rem, 4.6vw, 3.6rem);
+  line-height: 1.03;
+  margin-top: 22px;
+  letter-spacing: -0.022em;
+}
+.section-sub{
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 54ch;
+  font-weight: 300;
+}
+
+.tier-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(14px, 1.6vw, 22px);
+  align-items: stretch;
+}
+
+.tier{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(26px, 2.6vw, 36px);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: linear-gradient(175deg, rgba(255,255,255,0.026), rgba(255,255,255,0.008));
+  cursor: pointer;
+  transition: transform .5s var(--ease), border-color .5s var(--ease),
+              background .5s var(--ease), box-shadow .5s var(--ease);
+  overflow: hidden;
+}
+.tier::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 3px;
+  pointer-events: none;
+  background: radial-gradient(120% 80% at 50% 0%, rgba(198,168,124,0.10), transparent 62%);
+  opacity: 0;
+  transition: opacity .5s var(--ease);
+}
+.tier:hover{
+  transform: translateY(-6px);
+  border-color: rgba(198,168,124,0.42);
+  background: linear-gradient(175deg, rgba(198,168,124,0.06), rgba(255,255,255,0.012));
+  box-shadow: 0 34px 70px -34px rgba(0,0,0,0.95);
+}
+.tier:hover::before{ opacity: 1; }
+
+.tier--featured{
+  border-color: rgba(198,168,124,0.46);
+  background: linear-gradient(175deg, rgba(198,168,124,0.10), rgba(198,168,124,0.02) 55%, rgba(255,255,255,0.008));
+  box-shadow: 0 30px 70px -40px rgba(198,168,124,0.45);
+}
+.tier--featured::before{ opacity: 1; }
+
+.tier-flag{
+  position: absolute;
+  top: 0; right: 0;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: #16130E;
+  background: linear-gradient(178deg, var(--gold-light), var(--gold));
+  padding: 6px 13px;
+  border-radius: 0 3px 0 3px;
+  z-index: 10;
+}
+
+.tier-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.tier-kicker{
+  font-size: 9.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted-soft);
+  font-weight: 600;
+}
+.tier--featured .tier-kicker{ color: var(--gold); }
+
+.save-badge{
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  border: 1px solid rgba(198,168,124,0.45);
+  background: rgba(198,168,124,0.10);
+  border-radius: 999px;
+  padding: 4px 11px;
+  white-space: nowrap;
+  transition: background .4s var(--ease), color .4s var(--ease);
+}
+.tier:hover .save-badge{
+  background: rgba(198,168,124,0.22);
+  color: var(--alabaster);
+}
+
+.tier-name{
+  font-size: clamp(1.5rem, 2.2vw, 1.85rem);
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.tier-desc{
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0 0 24px;
+  font-weight: 300;
+  min-height: 44px;
+}
+
+.tier-list{
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: grid;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+  flex: 1;
+}
+.tier-list li{
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12.5px;
+  color: rgba(244,239,234,0.72);
+  line-height: 1.55;
+  font-weight: 300;
+}
+.tier-list li::before{
+  content: "";
+  flex: none;
+  width: 4px; height: 4px;
+  margin-top: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0.75;
+}
+
+.tier-price{
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.tier-was{
+  font-size: 14px;
+  color: var(--muted-soft);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+.tier-now{
+  font-family: var(--serif);
+  font-size: 2.15rem;
+  line-height: 1;
+  color: var(--alabaster);
+  letter-spacing: -0.015em;
+}
+.tier--featured .tier-now{ color: var(--gold-light); }
+
+.tier-cta{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  border: 1px solid rgba(244,239,234,0.20);
+  border-radius: 2px;
+  color: var(--alabaster);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: all .42s var(--ease);
+}
+.tier:hover .tier-cta{
+  border-color: rgba(198,168,124,0.6);
+  color: var(--gold-light);
+  background: rgba(198,168,124,0.08);
+}
+.tier--featured .tier-cta{
+  background: linear-gradient(178deg, #E0C9A4, var(--gold) 45%, #A8875E);
+  border-color: transparent;
+  color: #16130E;
+}
+.tier--featured:hover .tier-cta{
+  background: linear-gradient(178deg, #EBD8B7, var(--gold-light) 45%, #B69567);
+  color: #16130E;
+  box-shadow: 0 14px 32px -14px rgba(198,168,124,0.7);
+}
+
+.tier.is-active{
+  border-color: rgba(198,168,124,0.72);
+  box-shadow: 0 0 0 1px rgba(198,168,124,0.35), 0 34px 70px -34px rgba(0,0,0,0.95);
+}
+
+/* ============================================================
+   BENTO GRID
+   ============================================================ */
+.bento{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 1.5vw, 20px);
+}
+.b-card{
+  position: relative;
+  padding: clamp(26px, 2.8vw, 38px);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: linear-gradient(170deg, rgba(255,255,255,0.028), rgba(255,255,255,0.006));
+  overflow: hidden;
+  transition: transform .5s var(--ease), border-color .5s var(--ease),
+              box-shadow .5s var(--ease), background .5s var(--ease);
+  display: flex;
+  flex-direction: column;
+  min-height: 210px;
+}
+.b-card::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(90% 70% at 12% 0%, rgba(198,168,124,0.13), transparent 62%);
+  opacity: 0;
+  transition: opacity .55s var(--ease);
+}
+.b-card:hover{
+  transform: translateY(-5px);
+  border-color: rgba(198,168,124,0.40);
+  box-shadow: 0 30px 66px -32px rgba(0,0,0,0.95);
+}
+.b-card:hover::after{ opacity: 1; }
+
+.b-card > *{ position: relative; z-index: 1; }
+
+.b-botanicals{ grid-column: span 2; }
+.b-wrapping{ grid-column: span 2; }
+
+.b-label{
+  font-size: 9.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.b-title{
+  font-size: clamp(1.45rem, 2.2vw, 1.95rem);
+  line-height: 1.14;
+  margin-bottom: 14px;
+  letter-spacing: -0.012em;
+}
+.b-text{
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin: 0;
+  font-weight: 300;
+  max-width: 52ch;
+}
+
+/* botanical chips */
+.botanicals-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 26px;
+}
+.botan{
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 15px;
+  border: 1px solid rgba(244,239,234,0.075);
+  border-radius: 2px;
+  background: rgba(0,0,0,0.20);
+  transition: border-color .45s var(--ease), background .45s var(--ease), transform .45s var(--ease);
+}
+.botan:hover{
+  border-color: rgba(198,168,124,0.42);
+  background: rgba(198,168,124,0.06);
+  transform: translateY(-2px);
+}
+.botan-dot{
+  flex: none;
+  width: 6px; height: 6px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px rgba(198,168,124,0.14);
+}
+.botan-name{
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--alabaster);
+  letter-spacing: 0.03em;
+  line-height: 1.4;
+}
+.botan-latin{
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--muted-soft);
+  letter-spacing: 0;
+  margin-top: 1px;
+}
+
+/* press quotes */
+.b-quote{
+  justify-content: space-between;
+}
+.quote-mark{
+  font-family: var(--serif);
+  font-size: 3.4rem;
+  line-height: 0.6;
+  color: rgba(198,168,124,0.32);
+  margin-bottom: 12px;
+  display: block;
+}
+.quote-text{
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 1.9vw, 1.6rem);
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--alabaster);
+  margin: 0 0 22px;
+  letter-spacing: -0.005em;
+}
+.quote-source{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.quote-source::before{
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: rgba(198,168,124,0.6);
+}
+
+/* wrapping card */
+.wrap-rows{
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+.wrap-row{
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  font-size: 12.5px;
+  color: rgba(244,239,234,0.72);
+  font-weight: 300;
+  transition: color .4s var(--ease);
+}
+.b-card:hover .wrap-row{ color: rgba(244,239,234,0.88); }
+.wrap-check{
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(198,168,124,0.45);
+  color: var(--gold);
+  font-size: 9px;
+  line-height: 1;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{
+  border-top: 1px solid var(--line);
+  padding: clamp(44px, 6vw, 72px) 0 44px;
+  position: relative;
+  z-index: 2;
+}
+.footer-inner{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+.footer-brand{
+  max-width: 320px;
+}
+.footer-brand .brand{ margin-bottom: 14px; }
+.footer-brand p{
+  font-size: 12.5px;
+  color: var(--muted-soft);
+  line-height: 1.75;
+  margin: 0;
+  font-weight: 300;
+}
+.footer-cols{
+  display: flex;
+  gap: clamp(36px, 6vw, 88px);
+  flex-wrap: wrap;
+}
+.footer-col h4{
+  font-family: var(--sans);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 16px;
+}
+.footer-col ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.footer-col a{
+  font-size: 12.5px;
+  color: var(--muted);
+  font-weight: 300;
+  transition: color .35s var(--ease);
+}
+.footer-col a:hover{ color: var(--gold-light); }
+
+.footer-bottom{
+  margin-top: clamp(36px, 5vw, 60px);
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-soft);
+  font-weight: 500;
+}
+
+/* ============================================================
+   REVEAL ANIMATION
+   ============================================================ */
+.reveal{
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .9s var(--ease), transform .9s var(--ease);
+  will-change: opacity, transform;
+}
+.reveal.in{
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal{ opacity: 1; transform: none; }
+  html{ scroll-behavior: auto; }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1080px){
+  .nav-links{ display: none; }
+  .hero-grid{ grid-template-columns: 1fr; gap: 52px; }
+  .product-card{ max-width: 560px; }
+}
+
+@media (max-width: 900px){
+  .tier-grid{ grid-template-columns: 1fr; gap: 16px; }
+  .tier-desc{ min-height: 0; }
+  .tier--featured{ order: -1; }
+
+  .bento{ grid-template-columns: repeat(2, 1fr); }
+  .b-botanicals{ grid-column: span 2; }
+  .b-wrapping{ grid-column: span 2; }
+}
+
+@media (max-width: 720px){
+  .announce-inner{ gap: 12px 16px; padding-block: 8px; }
+  .announce-label{ font-size: 10px; letter-spacing: 0.12em; }
+  .cd-label{ display: none; }
+  .copy-btn{ font-size: 9.5px; padding: 5px 12px; }
+  .nav-utility{ display: none; }
+  .hero-title{ font-size: clamp(2.6rem, 10vw, 3.6rem); }
+  .hero-actions .btn{ flex: 1 1 100%; }
+  .footer-inner{ flex-direction: column; }
+  .botanicals-grid{ grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px){
+  .bento{ grid-template-columns: 1fr; }
+  .b-botanicals, .b-wrapping{ grid-column: span 1; }
+  .announce-inner{ justify-content: space-between; }
+  .cd-unit:nth-child(5), .cd-unit:nth-child(6), .cd-unit:nth-child(7){ display: none; }
+  .product-card{ padding: 24px; }
+  .price-note{ margin-left: 0; }
+  .footer-cols{ gap: 32px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     TOP BAR
+     ============================================================ -->
+<div class="topbar">
+  <div class="announce" role="region" aria-label="Black Friday announcement">
+    <div class="announce-inner">
+      <span class="announce-label">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        Black Friday · Private Access
+      </span>
+
+      <span class="countdown" id="countdown" aria-live="polite" aria-label="Time remaining">
+        <span class="cd-label">Ends in</span>
+        <span class="cd-unit"><span class="cd-num" id="cd-d">00</span></span>
+        <span class="cd-colon">:</span>
+        <span class="cd-unit"><span class="cd-num" id="cd-h">00</span></span>
+        <span class="cd-colon">:</span>
+        <span class="cd-unit"><span class="cd-num" id="cd-m">00</span></span>
+        <span class="cd-colon">:</span>
+        <span class="cd-unit"><span class="cd-num" id="cd-s">00</span></span>
+      </span>
+
+      <button class="copy-btn" id="copyBtn" type="button" aria-label="Copy discount code NOIR30">
+        <span class="glyph" aria-hidden="true">⧉</span>
+        <span class="tick" aria-hidden="true">✓</span>
+        <span id="copyText">Copy Code: NOIR30</span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="brand" href="#top">
+        <span class="mark" aria-hidden="true"></span>
+        Noir Botanics
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hero">The Ritual</a></li>
+        <li><a href="#tiers">Gift Sets</a></li>
+        <li><a href="#botanicals">Ingredients</a></li>
+        <li><a href="#press">Press</a></li>
+      </ul>
+      <div class="nav-utility">
+        <a class="cart" href="#tiers">
+          Cart <span class="cart-count" aria-hidden="true">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<main id="top">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- LEFT — editorial copy -->
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Black Friday · 2024 Edition</span>
+
+          <h1 class="hero-title">
+            <span class="line">The art of</span>
+            <span class="line">the winter</span>
+            <span class="line"><em>ritual.</em></span>
+          </h1>
+
+          <p class="hero-sub">
+            Black Friday, observed quietly. Thirty percent off the Signature Holiday
+            Grooming Set — a cold-weather ritual built on bakuchiol, olive-derived
+            squalane and white truffle. Made in small batches. Never restocked twice.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="#tiers">Shop the Set — 30% Off</a>
+            <a class="btn btn-ghost" href="#tiers">View Gift Tiers</a>
+          </div>
+
+          <div class="hero-trust">
+            <span>Complimentary gift wrap</span>
+            <span>Carbon-neutral delivery</span>
+            <span>60-day returns</span>
+          </div>
+        </div>
+
+        <!-- RIGHT — signature set card -->
+        <div class="reveal">
+          <article class="product-card" aria-label="Signature Holiday Grooming Set">
+
+            <div class="card-head">
+              <span class="card-kicker">No. 01 — The Signature</span>
+              <span class="card-stock">200 sets only</span>
+            </div>
+
+            <h2 class="card-title">Signature Holiday<br>Grooming Set</h2>
+
+            <div class="set-stage" aria-hidden="true">
+              <!-- REPLACE THE SRC BELOW WITH YOUR FIRST IMAGE URL -->
+              <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1000&auto=format&fit=crop" alt="Signature Holiday Grooming Set" class="hero-img">
+            </div>
+
+            <div class="badges" aria-label="Key ingredients">
+              <span class="badge">Bakuchiol</span>
+              <span class="badge">Squalane</span>
+              <span class="badge">White Truffle</span>
+              <span class="badge">Camellia Oil</span>
+            </div>
+
+            <div class="price-row">
+              <span class="price-now">$96</span>
+              <span class="price-was">$145</span>
+              <span class="price-note">Save 34%</span>
+            </div>
+
+            <button class="btn btn-gold btn-block" type="button" id="heroCta">
+              Add to Cart — NOIR30 Applied
+            </button>
+
+          </article>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TIERS
+       ============================================================ -->
+  <section class="section" id="tiers">
+    <div class="container">
+
+      <header class="section-head reveal">
+        <span class="eyebrow">Holiday Gift Sets</span>
+        <h2 class="section-title">Three ways to<br>give the <em class="serif-italic">ritual.</em></h2>
+        <p class="section-sub">
+          Each set arrives hand-tied in linen ribbon with a letterpress card.
+          Prices held until the countdown ends — then the archive closes.
+        </p>
+      </header>
+
+      <div class="tier-grid">
+
+        <!-- TIER I -->
+        <article class="tier reveal" data-tier="Essentials Duo" tabindex="0">
+          <div class="tier-top">
+            <span class="tier-kicker">Tier I</span>
+            <span class="save-badge">Save 29%</span>
+          </div>
+          
+          <!-- REPLACE THE SRC BELOW WITH YOUR THIRD IMAGE URL -->
+          <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=1000&auto=format&fit=crop" alt="Essentials Duo" class="tier-img">
+
+          <h3 class="tier-name">Essentials Duo</h3>
+          <p class="tier-desc">The two-step foundation — cleansing and renewal, in travel-ready glass.</p>
+
+          <ul class="tier-list">
+            <li>Renewing Cleansing Balm · 50ml</li>
+            <li>Bakuchiol Renewal Serum · 15ml</li>
+            <li>Stonewashed linen travel pouch</li>
+            <li>Letterpress ritual card</li>
+          </ul>
+
+          <div class="tier-price">
+            <span class="tier-was">$68</span>
+            <span class="tier-now">$48</span>
+          </div>
+
+          <button class="tier-cta" type="button">Select Essentials Duo</button>
+        </article>
+
+        <!-- TIER II -->
+        <article class="tier tier--featured reveal" data-tier="Complete Ritual" tabindex="0">
+          <span class="tier-flag">Most Gifted</span>
+          <div class="tier-top">
+            <span class="tier-kicker">Tier II</span>
+            <span class="save-badge">Save 34%</span>
+          </div>
+
+          <!-- REPLACE THE SRC BELOW WITH YOUR SECOND IMAGE URL -->
+          <img src="https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=1000&auto=format&fit=crop" alt="Complete Ritual" class="tier-img">
+
+          <h3 class="tier-name">Complete Ritual</h3>
+          <p class="tier-desc">Everything the ritual requires, in full size. Our most-gifted set, three years running.</p>
+
+          <ul class="tier-list">
+            <li>Renewing Cleansing Balm · 100ml</li>
+            <li>Bakuchiol Renewal Serum · 30ml</li>
+            <li>White Truffle Night Cream · 50ml</li>
+            <li>Hand-turned beechwood brush</li>
+            <li>Linen-wrapped presentation box</li>
+          </ul>
+
+          <div class="tier-price">
+            <span class="tier-was">$145</span>
+            <span class="tier-now">$96</span>
+          </div>
+
+          <button class="tier-cta" type="button">Select Complete Ritual</button>
+        </article>
+
+        <!-- TIER III REMOVED AS REQUESTED -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BENTO GRID
+       ============================================================ -->
+  <section class="section" id="botanicals" style="padding-top:0;">
+    <div class="container">
+
+      <header class="section-head reveal">
+        <span class="eyebrow">The House Standard</span>
+        <h2 class="section-title">Botany, restraint<br>and a <em class="serif-italic">quiet</em> kind of luxury.</h2>
+      </header>
+
+      <div class="bento">
+
+        <!-- 1. BOTANICALS -->
+        <article class="b-card b-botanicals reveal">
+          <span class="b-label">Formulation</span>
+          <h3 class="b-title">Grown, not engineered.</h3>
+          <p class="b-text">
+            Four actives carry the entire line. Nothing is added for texture, fragrance
+            or shelf theatre — only what the skin recognises.
+          </p>
+
+          <div class="botanicals-grid">
+            <div class="botan">
+              <span class="botan-dot" aria-hidden="true"></span>
+              <span>
+                <span class="botan-name">Bakuchiol</span>
+                <span class="botan-latin">Psoralea corylifolia</span>
+              </span>
+            </div>
+            <div class="botan">
+              <span class="botan-dot" aria-hidden="true"></span>
+              <span>
+                <span class="botan-name">Olive Squalane</span>
+                <span class="botan-latin">Olea europaea</span>
+              </span>
+            </div>
+            <div class="botan">
+              <span class="botan-dot" aria-hidden="true"></span>
+              <span>
+                <span class="botan-name">White Truffle</span>
+                <span class="botan-latin">Tuber magnatum</span>
+              </span>
+            </div>
+            <div class="botan">
+              <span class="botan-dot" aria-hidden="true"></span>
+              <span>
+                <span class="botan-name">Camellia Oil</span>
+                <span class="botan-latin">Camellia japonica</span>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. PRESS — GQ -->
+        <article class="b-card b-quote reveal" id="press">
+          <div>
+            <span class="quote-mark" aria-hidden="true">“</span>
+            <blockquote class="quote-text">The most quietly confident grooming line of the year.</blockquote>
+          </div>
+          <div class="quote-source">GQ</div>
+        </article>
+
+        <!-- 3. PRESS — ESQUIRE -->
+        <article class="b-card b-quote reveal">
+          <div>
+            <span class="quote-mark" aria-hidden="true">“</span>
+            <blockquote class="quote-text">Restraint, rendered as skincare.</blockquote>
+          </div>
+          <div class="quote-source">Esquire</div>
+        </article>
+
+        <!-- 4. WRAPPING -->
+        <article class="b-card b-wrapping reveal">
+          <span class="b-label">The Guarantee</span>
+          <h3 class="b-title">Every order arrives gift-ready.</h3>
+          <p class="b-text">
+            No invoice, no plastic, no branding shouting from the box.
+            Open it and it is already a gift.
+          </p>
+
+          <div class="wrap-rows">
+            <div class="wrap-row">
+              <span class="wrap-check" aria-hidden="true">✓</span>
+              Hand-tied linen ribbon and wax seal
+            </div>
+            <div class="wrap-row">
+              <span class="wrap-check" aria-hidden="true">✓</span>
+              Letterpress card, hand-written on request
+            </div>
+            <div class="wrap-row">
+              <span class="wrap-check" aria-hidden="true">✓</span>
+              Returns extended to 15 January
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <a class="brand" href="#top">
+          <span class="mark" aria-hidden="true"></span>
+          Noir Botanics
+        </a>
+        <p>
+          Small-batch botanical skincare and grooming. Formulated in the Cotswolds,
+          bottled in amber glass, shipped without plastic.
+        </p>
+      </div>
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#tiers">Gift Sets</a></li>
+            <li><a href="#hero">Signature Set</a></li>
+            <li><a href="#botanicals">Ingredients</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>House</h4>
+          <ul>
+            <li><a href="#press">Press</a></li>
+            <li><a href="#botanicals">Our Standard</a></li>
+            <li><a href="#tiers">Shipping</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Care</h4>
+          <ul>
+            <li><a href="#tiers">Returns</a></li>
+            <li><a href="#hero">Contact</a></li>
+            <li><a href="#top">Accessibility</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2024 Noir Botanics</span>
+      <span>Black Friday Private Access · Code NOIR30</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------------------------------------------------------
+     COUNTDOWN — persists deadline so a refresh doesn't reset it
+     --------------------------------------------------------- */
+  var STORAGE_KEY = 'noir_bf_deadline';
+  var deadline = 0;
+
+  try {
+    var stored = Number(window.localStorage.getItem(STORAGE_KEY));
+    if (stored && stored > Date.now()) {
+      deadline = stored;
+    }
+  } catch (e) { /* storage unavailable — fall through */ }
+
+  if (!deadline) {
+    // 2 days, 14 hours, 32 minutes from first visit
+    deadline = Date.now() + (2 * 86400 + 14 * 3600 + 32 * 60) * 1000;
+    try { window.localStorage.setItem(STORAGE_KEY, String(deadline)); } catch (e) {}
+  }
+
+  var elD = document.getElementById('cd-d');
+  var elH = document.getElementById('cd-h');
+  var elM = document.getElementById('cd-m');
+  var elS = document.getElementById('cd-s');
+
+  function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+  function tick() {
+    var diff = Math.max(0, deadline - Date.now());
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor(diff / 3600000) % 24;
+    var m = Math.floor(diff / 60000) % 60;
+    var s = Math.floor(diff / 1000) % 60;
+
+    if (elD) elD.textContent = pad(d);
+    if (elH) elH.textContent = pad(h);
+    if (elM) elM.textContent = pad(m);
+    if (elS) elS.textContent = pad(s);
+
+    if (diff <= 0) clearInterval(timer);
+  }
+
+  tick();
+  var timer = setInterval(tick, 1000);
+
+  /* ---------------------------------------------------------
+     COPY CODE
+     --------------------------------------------------------- */
+  var copyBtn = document.getElementById('copyBtn');
+  var copyText = document.getElementById('copyText');
+  var copyTimer = null;
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    ta.style.pointerEvents = 'none';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function () {
+      var code = 'NOIR30';
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).catch(function () { fallbackCopy(code); });
+      } else {
+        fallbackCopy(code);
+      }
+
+      copyBtn.classList.add('copied');
+      copyText.textContent = 'Code Copied ✓';
+
+      if (copyTimer) clearTimeout(copyTimer);
+      copyTimer = setTimeout(function () {
+        copyBtn.classList.remove('copied');
+        copyText.textContent = 'Copy Code: NOIR30';
+      }, 2400);
+    });
+  }
+
+  /* ---------------------------------------------------------
+     TIER SELECTION
+     --------------------------------------------------------- */
+  var tiers = Array.prototype.slice.call(document.querySelectorAll('.tier'));
+
+  tiers.forEach(function (tier) {
+    function select() {
+      tiers.forEach(function (t) { t.classList.remove('is-active'); });
+      tier.classList.add('is-active');
+
+      var cta = tier.querySelector('.tier-cta');
+      tiers.forEach(function (t) {
+        var c = t.querySelector('.tier-cta');
+        if (c && c !== cta) {
+          c.textContent = 'Select ' + (t.dataset.tier || '');
+        }
+      });
+      if (cta) cta.textContent = '✓ ' + (tier.dataset.tier || 'Selected');
+    }
+
+    tier.addEventListener('click', select);
+    tier.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        select();
+      }
+    });
+  });
+
+  /* ---------------------------------------------------------
+     HERO CTA — scrolls to tiers
+     --------------------------------------------------------- */
+  var heroCta = document.getElementById('heroCta');
+  if (heroCta) {
+    heroCta.addEventListener('click', function () {
+      var target = document.getElementById('tiers');
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  /* ---------------------------------------------------------
+     SCROLL REVEAL
+     --------------------------------------------------------- */
+  var reveals = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    reveals.forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i % 4, 3) * 70 + 'ms';
+      io.observe(el);
+    });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  }
+})();
+</script>
+</body>
+</html>
